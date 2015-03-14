@@ -110,37 +110,83 @@
 	</style>
 
 	<script type="text/javascript">
-		updateTitle = function() {
-			var jobNumber = document.getElementById("jobNumber").value;
-			var partNumber = document.getElementById("partNumber").value;
-			document.title = "Discrete Job #: " + jobNumber + " Part #: " + partNumber;
+	updateTitle = function() {
+		var jobNumber = document.getElementById("jobNumber").value;
+		var partNumber = document.getElementById("partNumber").value;
+		document.title = "Discrete Job #: " + jobNumber + " Part #: " + partNumber;
+	};
+
+	hideSection = function(hasMachinery, process) {
+		document.getElementById(process + "LeftSection").style.display = "none";
+		document.getElementById(process + "RightSection").style.display = "none";
+
+		if(hasMachinery) {
+			document.getElementById(process + "Machinery").style.display = "none";
 		};
 
-		hideSection = function(hasMachinery, process) {
-			document.getElementById(process + "LeftSection").style.display = "none";
-			document.getElementById(process + "RightSection").style.display = "none";
+		if(shouldPolarMachineryBeHidden()) {
+			hidePolarMachinery();
+		};
 
-			if(hasMachinery) {
-				document.getElementById(process + "Machinery").style.display = "none";
+		if(document.getElementById(process + "Finish").style.display !== "none") {
+			if(document.getElementById(findVisibleSectionAbove(process) + "Finish") !== null) {
+				document.getElementById(findVisibleSectionAbove(process) + "Finish").style.display = "";
 			};
 		};
+	};
 
-		hidePolar = function(section) {
-			document.getElementById("polarLeftSection" + section).style.display = "none";
-			document.getElementById("polarRightSection" + section).style.display = "none";
-
-			if(shouldPolarMachineryBeHidden()) {
-				hidePolarMachinery();
-			};
+	findVisibleSectionAbove = function(process) {
+		if(document.getElementById(process + "LeftSection").style.display === "") {
+			return process;
 		};
 
-		shouldPolarMachineryBeHidden = function() {
-			return document.getElementById("polarLeftSection1").style.display === "none" &&	document.getElementById("polarLeftSection2").style.display === "none" && document.getElementById("polarLeftSection3").style.display === "none"
+		switch(process) {
+			case 'heidelberg':
+			return findVisibleSectionAbove('indigo');
+			break;
+			case 'polar1':
+			return findVisibleSectionAbove('heidelberg');
+			break;
+			case 'kluge':
+			return findVisibleSectionAbove('polar1');
+			break;
+			case 'countCoater':
+			return findVisibleSectionAbove('kluge');
+			break;
+			case 'polar2':
+			return findVisibleSectionAbove('countCoater');
+			break;
+			case 'baum':
+			return findVisibleSectionAbove('polar2');
+			break;
+			case 'stitcher':
+			return findVisibleSectionAbove('baum');
+			break;
+			case 'polar3':
+			return findVisibleSectionAbove('stitcher');
+			break;
+			case 'petratto':
+			return findVisibleSectionAbove('polar3');
+			break;
+			case 'shanklin':
+			return findVisibleSectionAbove('petratto');
+			break;
+			case 'norpak':
+			return findVisibleSectionAbove('shanklin');
+			break;
+			case 'paddyWagon':
+			return findVisibleSectionAbove('norpak');
+			break;
 		};
+	};
 
-		hidePolarMachinery = function(shouldHide) {
-			document.getElementById("polarMachinery").style.display = "none";
-		};
+	shouldPolarMachineryBeHidden = function() {
+		return document.getElementById("polar1LeftSection").style.display === "none" &&	document.getElementById("polar2LeftSection").style.display === "none" && document.getElementById("polar3LeftSection").style.display === "none";
+	};
+
+	hidePolarMachinery = function(shouldHide) {
+		document.getElementById("polarMachinery").style.display = "none";
+	};
 	</script>
 </head>
 
@@ -253,6 +299,7 @@
 				<div id="indigoLeftSection">
 					<input type="checkbox" name="indigoHide" onclick="hideSection(true, 'indigo')">
 					<span class="section-sub-header">HP Indigo Process: Name__________________________________________ Date________________</span>
+					<div class="last-verification-step section-sub-header" id="indigoFinish" style="display:none;">Verify First Article meets all requirements IR____________________________________Date_______________</div>
 					<ol class="split process-list">
 						<li>Paper part #’s must match discrete job; check Lot# of each item against pick list; lot must be clearly assigned on pick list.</li>
 						<li>Import File from Agile or Gang Folder noted above; make-ready and produce first article.</li>
@@ -279,6 +326,7 @@
 				<div id="heidelbergLeftSection">
 					<input type="checkbox" name="heidelbergHide" onclick="hideSection(true, 'heidelberg')">
 					<span class="section-sub-header">Heidelberg Process: Name__________________________________________ Date________________</span>
+					<div class="last-verification-step section-sub-header" id="heidelbergFinish" style="display:none;">Verify First Article meets all requirements IR____________________________________Date_______________</div>
 					<ol class="split process-list">
 						<li>Paper part #’s must match discrete job; check Lot# of each item against pick list; lot must be clearly assigned on pick list.</li>
 						<li>Prepare &amp; Hang Plates, Make –ready, and produce first article³.</li>
@@ -288,7 +336,7 @@
 						<li>Return Signed press proof, and finished good sample stapled to proof, with Job Packet.</li>
 					</ol>
 				</div>
-				<div id="polarRightSection1">
+				<div id="polar1RightSection">
 					<div class="right-section">
 						&nbsp;<br>
 						&nbsp;<br>
@@ -302,9 +350,10 @@
 						_____________<br>
 					</div>
 				</div>
-				<div id="polarLeftSection1">
-					<input type="checkbox" name="polarHide1" onclick="hidePolar(1)">
+				<div id="polar1LeftSection">
+					<input type="checkbox" name="polar1Hide" onclick="hideSection(false, 'polar1')">
 					<span class="section-sub-header">Polar Pre-Bind Process: Name__________________________________________ Date________________</span>
+					<div class="last-verification-step section-sub-header" id="polar1Finish" style="display:none;">Verify First Article meets all requirements IR____________________________________Date_______________</div>
 					<ol class="split process-list">
 						<li>Load Cutting program and create first article matching Press Proof.</li>
 						<li>Perform a line clearance and clear all setup parts from the machine.</li>
@@ -330,6 +379,7 @@
 				<div id="klugeLeftSection">
 					<input type="checkbox" name="klugeHide" onclick="hideSection(true, 'kluge')">
 					<span class="section-sub-header">Kluge Process: Name__________________________________________ Date________________</span>
+					<div class="last-verification-step section-sub-header" id="klugeFinish" style="display:none;">Verify First Article meets all requirements IR____________________________________Date_______________</div>
 					<ol class="split process-list">
 						<li>Prepare appropriate Foil, Emboss, Die Cutting, Perforating, or Scoring Die.</li>
 						<li>Foil part #’s must match discrete job; check Lot# of each item against pick list; lot must be clearly assigned on pick list.</li>
@@ -359,6 +409,7 @@
 				<div id="countCoaterLeftSection">
 					<input type="checkbox" name="countCoaterHide" onclick="hideSection(false, 'countCoater')">
 					<span class="section-sub-header">Count Coater Process: Name__________________________________________ Date________________</span>
+					<div class="last-verification-step section-sub-header" id="countCoaterFinish" style="display:none;">Verify First Article meets all requirements IR____________________________________Date_______________</div>
 					<ol class="split process-list">
 						<li>Coater Unit is turned on and is clear and free from defect.</li>
 						<li>Load UV³ into Coater; Make Ready and produce first article.</li>
@@ -368,7 +419,7 @@
 						<li>Return Signed press proof, and finished good sample stapled to proof, with Job Packet.</li>
 					</ol>
 				</div>
-				<div id="polarRightSection2">
+				<div id="polar2RightSection">
 					<div class="right-section">
 						&nbsp;<br>
 						&nbsp;<br>
@@ -382,9 +433,10 @@
 						_____________<br>
 					</div>
 				</div>
-				<div id="polarLeftSection2">
-					<input type="checkbox" name="polarHide2" onclick="hidePolar(2)">
+				<div id="polar2LeftSection">
+					<input type="checkbox" name="polar2Hide" onclick="hideSection(false, 'polar2')">
 					<span class="section-sub-header">Polar Pre-Bind Process: Name__________________________________________ Date________________</span>
+					<div class="last-verification-step section-sub-header" id="polar2Finish" style="display:none;">Verify First Article meets all requirements IR____________________________________Date_______________</div>
 					<ol class="split process-list">
 						<li>Load Cutting program and create first article matching Press Proof.</li>
 						<li>Perform a line clearance and clear all setup parts from the machine.</li>
@@ -410,6 +462,7 @@
 				<div id="baumLeftSection">
 					<input type="checkbox" name="baumHide" onclick="hideSection(true, 'baum')">
 					<span class="section-sub-header">G&amp;K/Baum Process: Name__________________________________________ Date________________</span>
+					<div class="last-verification-step section-sub-header" id="baumFinish" style="display:none;">Verify First Article meets all requirements IR____________________________________Date_______________</div>
 					<ol class="split process-list">
 						<li>Prepare appropriate fold set up, sheet size and fold type, make ready one full finished Piece for first article.</li>
 						<li>Perform a line clearance and clear all setup parts from the machine.</li>
@@ -436,6 +489,7 @@
 				<div id="stitcherLeftSection">
 					<input type="checkbox" name="stitcherHide" onclick="hideSection(true, 'stitcher')">
 					<span class="section-sub-header">Stitcher Process: Name__________________________________________ Date________________</span>
+					<div class="last-verification-step section-sub-header" id="stitcherFinish" style="display:none;">Verify First Article meets all requirements IR____________________________________Date_______________</div>
 					<ol class="split process-list">
 						<li>Set Stitch to Proper Length according to paper thickness and set paper length. </li>
 						<li>Set paper thickness on each separate units and proper length for face trim.</li>
@@ -446,7 +500,7 @@
 						<li>Return Signed press proof, and finished good sample stapled to proof, with Job Packet.</li>
 					</ol>
 				</div>
-				<div id="polarRightSection3">
+				<div id="polar3RightSection">
 					<div class="right-section">
 						&nbsp;<br>
 						&nbsp;<br>
@@ -460,9 +514,10 @@
 						_____________<br>
 					</div>
 				</div>
-				<div id="polarLeftSection3">
-					<input type="checkbox" name="polarHide3" onclick="hidePolar(3)">
+				<div id="polar3LeftSection">
+					<input type="checkbox" name="polar3Hide" onclick="hideSection(false, 'polar3')">
 					<span class="section-sub-header">Polar Final Process: Name__________________________________________ Date________________</span>
+					<div class="last-verification-step section-sub-header" id="polar3Finish" style="display:none;">Verify First Article meets all requirements IR____________________________________Date_______________</div>
 					<ol class="split process-list">
 						<li>Load Cutting program and create first article matching Press Proof.</li>
 						<li>Perform a line clearance and clear all setup parts from the machine.</li>
@@ -488,6 +543,7 @@
 				<div id="petrattoLeftSection">
 					<input type="checkbox" name="petrattoHide" onclick="hideSection(true, 'petratto')">
 					<span class="section-sub-header">Petratto Process: Name__________________________________________ Date________________</span>
+					<div class="last-verification-step section-sub-header" id="petrattoFinish" style="display:none;">Verify First Article meets all requirements IR____________________________________Date_______________</div>
 					<ol class="split process-list">
 						<li>Perform a line clearance.</li>
 						<li>Set up equipment for folds and glue locations according to the CAD in Agile.</li>
@@ -513,6 +569,7 @@
 				<div id="shanklinLeftSection">
 					<input type="checkbox" name="shanklinHide" onclick="hideSection(true, 'shanklin')">
 					<span class="section-sub-header">Shanklin Process: Name__________________________________________ Date________________</span>
+					<div class="last-verification-step section-sub-header" id="shanklinFinish" style="display:none;">Verify First Article meets all requirements IR____________________________________Date_______________</div>
 					<ol class="split process-list">
 						<li>Perform a line clearance.</li>
 						<li>Load Shrink Film and create first article matching Press Proof¹.</li>
@@ -538,6 +595,7 @@
 				<div id="norpakLeftSection">
 					<input type="checkbox" name="norpakHide" onclick="hideSection(true, 'norpak')">
 					<span class="section-sub-header">Norpak Process: Name__________________________________________ Date________________</span>
+					<div class="last-verification-step section-sub-header" id="norpakFinish" style="display:none;">Verify First Article meets all requirements IR____________________________________Date_______________</div>
 					<ol class="split process-list">
 						<li>Prepare all parts form Discrete Job², and load into Norpak.</li>
 						<li>Prepare a first article.</li>
@@ -564,6 +622,7 @@
 				<div id="paddyWagonLeftSection">
 					<input type="checkbox" name="paddyWagonHide" onclick="hideSection(false, 'paddyWagon')">
 					<span class="section-sub-header">Paddy Wagon Process: Name__________________________________________ Date________________</span>
+					<div class="last-verification-step section-sub-header" id="paddyWagonFinish">Verify First Article meets all requirements IR____________________________________Date_______________</div>
 					<ol class="split process-list">
 						<li>Perform a line clearance, prepare chip.</li>
 						<li>Chip part #’s must match discrete job; check Lot# of each item against pick list; lot must be clearly assigned on pick list.</li>
