@@ -237,12 +237,12 @@
 						<td>Finished Size</td>
 						<td><input name="finishedSize" id="finishedSize" type="text" maxlength=25 size=40></td>
 					</tr>
-					<tr>
-						<td>Pre-Bind Flat Size</td>
+					<tr id="flatSizeRow">
+						<td><input type="checkbox" name="flatSizeRowHide" onclick="document.getElementById('flatSizeRow').style.display = 'none';"> Pre-Bind Flat Size</td>
 						<td><input name="flatSize" id="flatSize" type="text" maxlength=25 size=40></td>
 					</tr>
-					<tr>
-						<td>Die Number</td>
+					<tr id="dieNumberRow">
+						<td><input type="checkbox" name="dieNumberRowHide" onclick="document.getElementById('dieNumberRow').style.display = 'none';"> Die Number</td>
 						<td><input name="dieNumber" id="dieNumber" type="text" maxlength=25 size=40></td>
 					</tr>
 				</table>
