@@ -5,18 +5,19 @@
 	<title>Discrete Job #: Part #: </title>
 	<style type="text/css">
 	body {
-		font-family: Verdana, Arial, Helvetica, sans-serif;
-		font-size: 13px;
+		font-family: Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+		font-size: 15px;
 		background-color: #FFFFFF;
 		margin-top: 10px;
 		padding: 0;
-		color: #000;
+		color: #000000;
 		counter-reset: listCounter;
 	}
 
 	ol {
 		padding: 0;
-		margin: 0;
+		margin-bottom: 25px;
+		margin-top: 0px;
 		padding-left: 40px;
 	}
 
@@ -47,14 +48,18 @@
 		list-style-type: none;
 	}
 
-	ol.sub-list {
-		counter-reset: subListCounter;
-		list-style-type: lower-alpha;
-	}
-
 	ol.split li:before {
 		counter-increment: listCounter;
 		content: counter(listCounter) ".\00A0\00A0";
+	}
+
+	ol.split li {
+		text-indent: -1em;
+	}
+
+	ol.sub-list {
+		counter-reset: subListCounter;
+		list-style-type: lower-alpha;
 	}
 
 	ol.sub-list li:before {
@@ -62,16 +67,8 @@
 		content: ".\00A0\00A0";
 	}
 
-	ol.split li {
-		text-indent: -1em;
-	}
-
 	ol.sub-list li {
-		font-size: 10px;
-	}
-
-	.section-header {
-		font-weight: bold;
+		font-size: 11px;
 	}
 
 	.section {
@@ -80,22 +77,18 @@
 		margin-bottom: 10px;
 	}
 
+	.section-header {
+		font-weight: bold;
+	}
+
 	.section-sub-header {
 		padding-left: 10px;
 		font-weight: bold;
 	}
 
-	.process-list {
-		margin-bottom: 10px;
-	}
-
 	.right-section {
 		float: right;
-		font-size: 9px;
-	}
-
-	.last-verification-step {
-		color: #0070C0;
+		font-size: 11px;
 	}
 
 	.blue-text {
@@ -110,17 +103,17 @@
 	</style>
 
 	<script type="text/javascript">
-		updateTitle = function() {
-			var jobNumber = document.getElementById("jobNumber").value;
-			var partNumber = document.getElementById("partNumber").value;
-			document.title = "Discrete Job #: " + jobNumber + " Part #: " + partNumber;
-		};
+	updateTitle = function() {
+		var jobNumber = document.getElementById("jobNumber").value;
+		var partNumber = document.getElementById("partNumber").value;
+		document.title = "Discrete Job #: " + jobNumber + " Part #: " + partNumber;
+	};
 
-		hideIndigo = function() {
-			document.getElementById("indigoMachinery").style.display = "none";
-			document.getElementById("indigoLeftSection").style.display = "none";
-			document.getElementById("indigoRightSection").style.display = "none";
-		};
+	hideIndigo = function() {
+		document.getElementById("indigoMachinery").style.display = "none";
+		document.getElementById("indigoLeftSection").style.display = "none";
+		document.getElementById("indigoRightSection").style.display = "none";
+	};
 	</script>
 </head>
 
@@ -222,7 +215,7 @@
 				<div id="indigoLeftSection">
 					<input type="checkbox" name="indigoHide" onclick="hideIndigo()">
 					<span class="section-sub-header">HP Indigo Process: Name__________________________________________ Date________________</span>
-					<ol class="split process-list">
+					<ol class="split">
 						<li>Paper part #’s must match discrete job; check Lot# of each item against pick list; lot must be clearly assigned on pick list.</li>
 						<li>Import File from Agile or Gang Folder noted above; make-ready and produce first article.</li>
 						<li>Agile current revision __________________ Proof’s current revision*__________________.</li>
@@ -247,7 +240,7 @@
 				</div>
 				<div id="finisherLeftSection">
 					<div class="section-sub-header">Roll Finisher Process: Name__________________________________________ Date________________</div>
-					<div class="last-verification-step section-sub-header">Verify First Article meets all requirements IR____________________________________Date_______________</div>
+					<div class="blue-text section-sub-header">Verify First Article meets all requirements IR____________________________________Date_______________</div>
 					<ol class="split">
 						<li>Load proper roll material into Finisher.</li>
 						<li>Load proper Mag die, &amp; UV³ if a printed label.</li>
