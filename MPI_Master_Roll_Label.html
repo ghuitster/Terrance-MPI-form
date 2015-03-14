@@ -101,13 +101,25 @@
 	.blue-text {
 		color: #0070C0;
 	}
+
+	@media print {
+		input[type="checkbox"] {
+			display: none;
+		}
+	}
 	</style>
 
 	<script type="text/javascript">
 		updateTitle = function() {
-			var jobNumber = document.getElementById("jobNumber").value
-			var partNumber = document.getElementById("partNumber").value
-			document.title = "Discrete Job #: " + jobNumber + " Part #: " + partNumber
+			var jobNumber = document.getElementById("jobNumber").value;
+			var partNumber = document.getElementById("partNumber").value;
+			document.title = "Discrete Job #: " + jobNumber + " Part #: " + partNumber;
+		};
+
+		hideIndigo = function() {
+			document.getElementById("indigoMachinery").style.display = "none";
+			document.getElementById("indigoLeftSection").style.display = "none";
+			document.getElementById("indigoRightSection").style.display = "none";
 		};
 	</script>
 </head>
@@ -138,7 +150,7 @@
 					</tr>
 					<tr>
 						<td>Machinery &amp; SOP’s</td>
-						<td>MAC_293 HP Indigo; MAC_296 GM DC330</td>
+						<td><span id="indigoMachinery">MAC_293 HP Indigo;</span> MAC_296 GM DC330</td>
 					</tr>
 					<tr>
 						<td>Safety PPE</td>
@@ -189,28 +201,33 @@
 				</ol>
 			</div>
 			<div class="section">
-				<div class="right-section">
-					&nbsp;<br>
-					&nbsp;<br>
-					Pre-Run:<br>
-					_____________<br>
-					Run:<br>
-					_____________<br>
-					Scrap:<br>
-					_____________<br>
-					QTY Finished:<br>
-					_____________<br>
+				<div id="indigoRightSection">
+					<div class="right-section">
+						&nbsp;<br>
+						&nbsp;<br>
+						Pre-Run:<br>
+						_____________<br>
+						Run:<br>
+						_____________<br>
+						Scrap:<br>
+						_____________<br>
+						QTY Finished:<br>
+						_____________<br>
+					</div>
 				</div>
 				<div class="section-header">Processing Instructions &amp; Line Set-Up</div>
-				<div class="section-sub-header">HP Indigo Process: Name__________________________________________ Date________________</div>
-				<ol class="split process-list">
-					<li>Paper part #’s must match discrete job; check Lot# of each item against pick list; lot must be clearly assigned on pick list.</li>
-					<li>Import File from Agile or Gang Folder noted above; make-ready and produce first article.</li>
-					<li>Agile current revision __________________ Proof’s current revision*__________________.</li>
-					<li>Produce quantity required for job, plus an additional 10% for bindery spoilage, making sure to match the first article.</li>
-					<li>Perform routine shutdown and line clearance, which includes deleting IMP file.</li>
-					<li>Return Signed press proof, and finished good sample stapled to proof, with Job Packet.</li>
-				</ol>
+				<div id="indigoLeftSection">
+					<input type="checkbox" name="indigoHide" onclick="hideIndigo()">
+					<span class="section-sub-header">HP Indigo Process: Name__________________________________________ Date________________</span>
+					<ol class="split process-list">
+						<li>Paper part #’s must match discrete job; check Lot# of each item against pick list; lot must be clearly assigned on pick list.</li>
+						<li>Import File from Agile or Gang Folder noted above; make-ready and produce first article.</li>
+						<li>Agile current revision __________________ Proof’s current revision*__________________.</li>
+						<li>Produce quantity required for job, plus an additional 10% for bindery spoilage, making sure to match the first article.</li>
+						<li>Perform routine shutdown and line clearance, which includes deleting IMP file.</li>
+						<li>Return Signed press proof, and finished good sample stapled to proof, with Job Packet.</li>
+					</ol>
+				</div>
 				<div class="right-section">
 					&nbsp;<br>
 					&nbsp;<br>
