@@ -60,6 +60,7 @@
 	ol.sub-list {
 		counter-reset: subListCounter;
 		list-style-type: lower-alpha;
+		margin-bottom: 0px;
 	}
 
 	ol.sub-list li:before {
@@ -177,7 +178,7 @@
 		return document.getElementById("polar1LeftSection").style.display === "none" &&	document.getElementById("polar2LeftSection").style.display === "none" && document.getElementById("polar3LeftSection").style.display === "none";
 	};
 
-	hidePolarMachinery = function(shouldHide) {
+	hidePolarMachinery = function() {
 		document.getElementById("polarMachinery").style.display = "none";
 	};
 	</script>
@@ -202,7 +203,7 @@
 			</div>
 			<div class="section">
 				<div class="section-header" style="text-align: center;">Print Shop: Manufacturing Processing Instructions for Sheets</div>
-				<table style="width:100%" border="1">
+				<table style="width: 100%;" border="1">
 					<tr>
 						<td>Mfg. Area</td>
 						<td>Ultradent Print Shop</td>
@@ -218,7 +219,7 @@
 							<span id="stitcherMachinery">MAC_294 Stitcher;</span>
 							<span id="petrattoMachinery">MAC0405 Petratto;</span>
 							<span id="shanklinMachinery">MAC0406 Shanklin;</span>
-							<span id="norpakMachinery">MAC0407 Norpak</span>
+							<span id="norpakMachinery">MAC0407 Norpak;</span>
 						</td>
 					</tr>
 					<tr>
@@ -257,12 +258,12 @@
 					<li>Print work order from Oracle <b>“UPI Discrete Job”²</b>; Change Status to “Released” &amp; Save Job.</li>
 					<li>Fill in all applicable fields in this form from the Agile Part Printed Materials Info section.</li>
 					<li>Match Routing to process steps below <b>IR________________________________ Date________________</b></li>
-					<li>Print <b>Processing Instructions²</b>, and assemble job packet with the <b>Proof²</b>. </li>
+					<li>Print <b>Processing Instructions²</b>, and assemble job packet with the <b>Proof²</b>.</li>
 				</ol>
 			</div>
 			<div class="section">
 				<div class="section-header">Pre-Press Job Set-Up (Plates &amp; Files)&nbsp;&nbsp;&nbsp;&nbsp;<span class="blue-text">*The IR verifying must be a different person than the person preforming the task.*</span></div>
-				<div class="section-sub-header"> Pre-Press Process: Name__________________________________________ Date________________</div>
+				<div class="section-sub-header">Pre-Press Process: Name__________________________________________ Date________________</div>
 				<ol class="split">
 					<li>Retrieve current/correct file(s) &amp; revision(s) from Agile.</li>
 					<li>Imposition file(s).</li>
@@ -274,25 +275,23 @@
 				</ol>
 			</div>
 			<div class="section">
-				<div id="indigoRightSection">
-					<div class="right-section">
-						&nbsp;<br>
-						&nbsp;<br>
-						Pre-Run:<br>
-						_____________<br>
-						Run:<br>
-						_____________<br>
-						Scrap:<br>
-						_____________<br>
-						QTY Finished:<br>
-						_____________<br>
-					</div>
+				<div id="indigoRightSection" class="right-section">
+					&nbsp;<br>
+					&nbsp;<br>
+					Pre-Run:<br>
+					_____________<br>
+					Run:<br>
+					_____________<br>
+					Scrap:<br>
+					_____________<br>
+					QTY Finished:<br>
+					_____________<br>
 				</div>
 				<div class="section-header">Processing Instructions &amp; Line Set-Up</div>
 				<div id="indigoLeftSection">
 					<input type="checkbox" name="indigoHide" onclick="hideSection(true, 'indigo')">
 					<span class="section-sub-header">HP Indigo Process: Name__________________________________________ Date________________</span>
-					<div class="blue-text section-sub-header" id="indigoFinish" style="display:none;">Verify First Article meets all requirements IR____________________________________Date_______________</div>
+					<div class="blue-text section-sub-header" id="indigoFinish" style="display: none;">Verify First Article meets all requirements IR____________________________________ Date_______________</div>
 					<ol class="split">
 						<li>Paper part #’s must match discrete job; check Lot# of each item against pick list; lot must be clearly assigned on pick list.</li>
 						<li>Import File from Agile or Gang Folder noted above; make-ready and produce first article.</li>
@@ -302,24 +301,22 @@
 						<li>Return Signed press proof, and finished good sample stapled to proof, with Job Packet.</li>
 					</ol>
 				</div>
-				<div id="heidelbergRightSection">
-					<div class="right-section">
-						&nbsp;<br>
-						&nbsp;<br>
-						Pre-Run:<br>
-						_____________<br>
-						Run:<br>
-						_____________<br>
-						Scrap:<br>
-						_____________<br>
-						QTY Finished:<br>
-						_____________<br>
-					</div>
+				<div id="heidelbergRightSection" class="right-section">
+					&nbsp;<br>
+					&nbsp;<br>
+					Pre-Run:<br>
+					_____________<br>
+					Run:<br>
+					_____________<br>
+					Scrap:<br>
+					_____________<br>
+					QTY Finished:<br>
+					_____________<br>
 				</div>
 				<div id="heidelbergLeftSection">
 					<input type="checkbox" name="heidelbergHide" onclick="hideSection(true, 'heidelberg')">
 					<span class="section-sub-header">Heidelberg Process: Name__________________________________________ Date________________</span>
-					<div class="blue-text section-sub-header" id="heidelbergFinish" style="display:none;">Verify First Article meets all requirements IR____________________________________Date_______________</div>
+					<div class="blue-text section-sub-header" id="heidelbergFinish" style="display: none;">Verify First Article meets all requirements IR____________________________________ Date_______________</div>
 					<ol class="split">
 						<li>Paper part #’s must match discrete job; check Lot# of each item against pick list; lot must be clearly assigned on pick list.</li>
 						<li>Prepare &amp; Hang Plates, Make –ready, and produce first article³.</li>
@@ -329,24 +326,22 @@
 						<li>Return Signed press proof, and finished good sample stapled to proof, with Job Packet.</li>
 					</ol>
 				</div>
-				<div id="polar1RightSection">
-					<div class="right-section">
-						&nbsp;<br>
-						&nbsp;<br>
-						Pre-Run:<br>
-						_____________<br>
-						Run:<br>
-						_____________<br>
-						Scrap:<br>
-						_____________<br>
-						QTY Finished:<br>
-						_____________<br>
-					</div>
+				<div id="polar1RightSection" class="right-section">
+					&nbsp;<br>
+					&nbsp;<br>
+					Pre-Run:<br>
+					_____________<br>
+					Run:<br>
+					_____________<br>
+					Scrap:<br>
+					_____________<br>
+					QTY Finished:<br>
+					_____________<br>
 				</div>
 				<div id="polar1LeftSection">
 					<input type="checkbox" name="polar1Hide" onclick="hideSection(false, 'polar1')">
 					<span class="section-sub-header">Polar Pre-Bind Process: Name__________________________________________ Date________________</span>
-					<div class="blue-text section-sub-header" id="polar1Finish" style="display:none;">Verify First Article meets all requirements IR____________________________________Date_______________</div>
+					<div class="blue-text section-sub-header" id="polar1Finish" style="display: none;">Verify First Article meets all requirements IR____________________________________ Date_______________</div>
 					<ol class="split">
 						<li>Load Cutting program and create first article matching Press Proof.</li>
 						<li>Perform a line clearance and clear all setup parts from the machine.</li>
@@ -355,24 +350,22 @@
 						<li>Return Signed press proof, and finished good sample stapled to proof, with Job Packet.</li>
 					</ol>
 				</div>
-				<div id="klugeRightSection">
-					<div class="right-section">
-						&nbsp;<br>
-						&nbsp;<br>
-						Pre-Run:<br>
-						_____________<br>
-						Run:<br>
-						_____________<br>
-						Scrap:<br>
-						_____________<br>
-						QTY Finished:<br>
-						_____________<br>
-					</div>
+				<div id="klugeRightSection" class="right-section">
+					&nbsp;<br>
+					&nbsp;<br>
+					Pre-Run:<br>
+					_____________<br>
+					Run:<br>
+					_____________<br>
+					Scrap:<br>
+					_____________<br>
+					QTY Finished:<br>
+					_____________<br>
 				</div>
 				<div id="klugeLeftSection">
 					<input type="checkbox" name="klugeHide" onclick="hideSection(true, 'kluge')">
 					<span class="section-sub-header">Kluge Process: Name__________________________________________ Date________________</span>
-					<div class="blue-text section-sub-header" id="klugeFinish" style="display:none;">Verify First Article meets all requirements IR____________________________________Date_______________</div>
+					<div class="blue-text section-sub-header" id="klugeFinish" style="display: none;">Verify First Article meets all requirements IR____________________________________ Date_______________</div>
 					<ol class="split">
 						<li>Prepare appropriate Foil, Emboss, Die Cutting, Perforating, or Scoring Die.</li>
 						<li>Foil part #’s must match discrete job; check Lot# of each item against pick list; lot must be clearly assigned on pick list.</li>
@@ -385,24 +378,22 @@
 						<li>Return Signed press proof, and finished good sample stapled to proof, with Job Packet.</li>
 					</ol>
 				</div>
-				<div id="countCoaterRightSection">
-					<div class="right-section">
-						&nbsp;<br>
-						&nbsp;<br>
-						Pre-Run:<br>
-						_____________<br>
-						Run:<br>
-						_____________<br>
-						Scrap:<br>
-						_____________<br>
-						QTY Finished:<br>
-						_____________<br>
-					</div>
+				<div id="countCoaterRightSection" class="right-section">
+					&nbsp;<br>
+					&nbsp;<br>
+					Pre-Run:<br>
+					_____________<br>
+					Run:<br>
+					_____________<br>
+					Scrap:<br>
+					_____________<br>
+					QTY Finished:<br>
+					_____________<br>
 				</div>
 				<div id="countCoaterLeftSection">
 					<input type="checkbox" name="countCoaterHide" onclick="hideSection(false, 'countCoater')">
 					<span class="section-sub-header">Count Coater Process: Name__________________________________________ Date________________</span>
-					<div class="blue-text section-sub-header" id="countCoaterFinish" style="display:none;">Verify First Article meets all requirements IR____________________________________Date_______________</div>
+					<div class="blue-text section-sub-header" id="countCoaterFinish" style="display: none;">Verify First Article meets all requirements IR____________________________________ Date_______________</div>
 					<ol class="split">
 						<li>Coater Unit is turned on and is clear and free from defect.</li>
 						<li>Load UV³ into Coater; Make Ready and produce first article.</li>
@@ -412,24 +403,22 @@
 						<li>Return Signed press proof, and finished good sample stapled to proof, with Job Packet.</li>
 					</ol>
 				</div>
-				<div id="polar2RightSection">
-					<div class="right-section">
-						&nbsp;<br>
-						&nbsp;<br>
-						Pre-Run:<br>
-						_____________<br>
-						Run:<br>
-						_____________<br>
-						Scrap:<br>
-						_____________<br>
-						QTY Finished:<br>
-						_____________<br>
-					</div>
+				<div id="polar2RightSection" class="right-section">
+					&nbsp;<br>
+					&nbsp;<br>
+					Pre-Run:<br>
+					_____________<br>
+					Run:<br>
+					_____________<br>
+					Scrap:<br>
+					_____________<br>
+					QTY Finished:<br>
+					_____________<br>
 				</div>
 				<div id="polar2LeftSection">
 					<input type="checkbox" name="polar2Hide" onclick="hideSection(false, 'polar2')">
 					<span class="section-sub-header">Polar Pre-Bind Process: Name__________________________________________ Date________________</span>
-					<div class="blue-text section-sub-header" id="polar2Finish" style="display:none;">Verify First Article meets all requirements IR____________________________________Date_______________</div>
+					<div class="blue-text section-sub-header" id="polar2Finish" style="display: none;">Verify First Article meets all requirements IR____________________________________ Date_______________</div>
 					<ol class="split">
 						<li>Load Cutting program and create first article matching Press Proof.</li>
 						<li>Perform a line clearance and clear all setup parts from the machine.</li>
@@ -438,24 +427,22 @@
 						<li>Return Signed press proof, and finished good sample stapled to proof, with Job Packet.</li>
 					</ol>
 				</div>
-				<div id="baumRightSection">
-					<div class="right-section">
-						&nbsp;<br>
-						&nbsp;<br>
-						Pre-Run:<br>
-						_____________<br>
-						Run:<br>
-						_____________<br>
-						Scrap:<br>
-						_____________<br>
-						QTY Finished:<br>
-						_____________<br>
-					</div>
+				<div id="baumRightSection" class="right-section">
+					&nbsp;<br>
+					&nbsp;<br>
+					Pre-Run:<br>
+					_____________<br>
+					Run:<br>
+					_____________<br>
+					Scrap:<br>
+					_____________<br>
+					QTY Finished:<br>
+					_____________<br>
 				</div>
 				<div id="baumLeftSection">
 					<input type="checkbox" name="baumHide" onclick="hideSection(true, 'baum')">
 					<span class="section-sub-header">G&amp;K/Baum Process: Name__________________________________________ Date________________</span>
-					<div class="blue-text section-sub-header" id="baumFinish" style="display:none;">Verify First Article meets all requirements IR____________________________________Date_______________</div>
+					<div class="blue-text section-sub-header" id="baumFinish" style="display: none;">Verify First Article meets all requirements IR____________________________________ Date_______________</div>
 					<ol class="split">
 						<li>Prepare appropriate fold set up, sheet size and fold type, make ready one full finished Piece for first article.</li>
 						<li>Perform a line clearance and clear all setup parts from the machine.</li>
@@ -465,26 +452,24 @@
 						<li>Return Signed press proof, and finished good sample stapled to proof, with Job Packet.</li>
 					</ol>
 				</div>
-				<div id="stitcherRightSection">
-					<div class="right-section">
-						&nbsp;<br>
-						&nbsp;<br>
-						Pre-Run:<br>
-						_____________<br>
-						Run:<br>
-						_____________<br>
-						Scrap:<br>
-						_____________<br>
-						QTY Finished:<br>
-						_____________<br>
-					</div>
+				<div id="stitcherRightSection" class="right-section">
+					&nbsp;<br>
+					&nbsp;<br>
+					Pre-Run:<br>
+					_____________<br>
+					Run:<br>
+					_____________<br>
+					Scrap:<br>
+					_____________<br>
+					QTY Finished:<br>
+					_____________<br>
 				</div>
 				<div id="stitcherLeftSection">
 					<input type="checkbox" name="stitcherHide" onclick="hideSection(true, 'stitcher')">
 					<span class="section-sub-header">Stitcher Process: Name__________________________________________ Date________________</span>
-					<div class="blue-text section-sub-header" id="stitcherFinish" style="display:none;">Verify First Article meets all requirements IR____________________________________Date_______________</div>
+					<div class="blue-text section-sub-header" id="stitcherFinish" style="display: none;">Verify First Article meets all requirements IR____________________________________ Date_______________</div>
 					<ol class="split">
-						<li>Set Stitch to Proper Length according to paper thickness and set paper length. </li>
+						<li>Set Stitch to Proper Length according to paper thickness and set paper length.</li>
 						<li>Set paper thickness on each separate units and proper length for face trim.</li>
 						<li>Create one full finished piece for first article.</li>
 						<li>Perform a line clearance and clear all setup parts from the machine.</li>
@@ -493,24 +478,22 @@
 						<li>Return Signed press proof, and finished good sample stapled to proof, with Job Packet.</li>
 					</ol>
 				</div>
-				<div id="polar3RightSection">
-					<div class="right-section">
-						&nbsp;<br>
-						&nbsp;<br>
-						Pre-Run:<br>
-						_____________<br>
-						Run:<br>
-						_____________<br>
-						Scrap:<br>
-						_____________<br>
-						QTY Finished:<br>
-						_____________<br>
-					</div>
+				<div id="polar3RightSection" class="right-section">
+					&nbsp;<br>
+					&nbsp;<br>
+					Pre-Run:<br>
+					_____________<br>
+					Run:<br>
+					_____________<br>
+					Scrap:<br>
+					_____________<br>
+					QTY Finished:<br>
+					_____________<br>
 				</div>
 				<div id="polar3LeftSection">
 					<input type="checkbox" name="polar3Hide" onclick="hideSection(false, 'polar3')">
 					<span class="section-sub-header">Polar Final Process: Name__________________________________________ Date________________</span>
-					<div class="blue-text section-sub-header" id="polar3Finish" style="display:none;">Verify First Article meets all requirements IR____________________________________Date_______________</div>
+					<div class="blue-text section-sub-header" id="polar3Finish" style="display: none;">Verify First Article meets all requirements IR____________________________________ Date_______________</div>
 					<ol class="split">
 						<li>Load Cutting program and create first article matching Press Proof.</li>
 						<li>Perform a line clearance and clear all setup parts from the machine.</li>
@@ -519,24 +502,22 @@
 						<li>Return Signed press proof, and finished good sample stapled to proof, with Job Packet.</li>
 					</ol>
 				</div>
-				<div id="petrattoRightSection">
-					<div class="right-section">
-						&nbsp;<br>
-						&nbsp;<br>
-						Pre-Run:<br>
-						_____________<br>
-						Run:<br>
-						_____________<br>
-						Scrap:<br>
-						_____________<br>
-						QTY Finished:<br>
-						_____________<br>
-					</div>
+				<div id="petrattoRightSection" class="right-section">
+					&nbsp;<br>
+					&nbsp;<br>
+					Pre-Run:<br>
+					_____________<br>
+					Run:<br>
+					_____________<br>
+					Scrap:<br>
+					_____________<br>
+					QTY Finished:<br>
+					_____________<br>
 				</div>
 				<div id="petrattoLeftSection">
 					<input type="checkbox" name="petrattoHide" onclick="hideSection(true, 'petratto')">
 					<span class="section-sub-header">Petratto Process: Name__________________________________________ Date________________</span>
-					<div class="blue-text section-sub-header" id="petrattoFinish" style="display:none;">Verify First Article meets all requirements IR____________________________________Date_______________</div>
+					<div class="blue-text section-sub-header" id="petrattoFinish" style="display: none;">Verify First Article meets all requirements IR____________________________________ Date_______________</div>
 					<ol class="split">
 						<li>Perform a line clearance.</li>
 						<li>Set up equipment for folds and glue locations according to the CAD in Agile.</li>
@@ -545,24 +526,22 @@
 						<li>Return Signed press proof, and finished good sample stapled to proof, with Job Packet.</li>
 					</ol>
 				</div>
-				<div id="shanklinRightSection">
-					<div class="right-section">
-						&nbsp;<br>
-						&nbsp;<br>
-						Pre-Run:<br>
-						_____________<br>
-						Run:<br>
-						_____________<br>
-						Scrap:<br>
-						_____________<br>
-						QTY Finished:<br>
-						_____________<br>
-					</div>
+				<div id="shanklinRightSection" class="right-section">
+					&nbsp;<br>
+					&nbsp;<br>
+					Pre-Run:<br>
+					_____________<br>
+					Run:<br>
+					_____________<br>
+					Scrap:<br>
+					_____________<br>
+					QTY Finished:<br>
+					_____________<br>
 				</div>
 				<div id="shanklinLeftSection">
 					<input type="checkbox" name="shanklinHide" onclick="hideSection(true, 'shanklin')">
 					<span class="section-sub-header">Shanklin Process: Name__________________________________________ Date________________</span>
-					<div class="blue-text section-sub-header" id="shanklinFinish" style="display:none;">Verify First Article meets all requirements IR____________________________________Date_______________</div>
+					<div class="blue-text section-sub-header" id="shanklinFinish" style="display: none;">Verify First Article meets all requirements IR____________________________________ Date_______________</div>
 					<ol class="split">
 						<li>Perform a line clearance.</li>
 						<li>Load Shrink Film and create first article matching Press Proof¹.</li>
@@ -571,24 +550,22 @@
 						<li>Return Signed press proof, and finished good sample stapled to proof, with Job Packet.</li>
 					</ol>
 				</div>
-				<div id="norpakRightSection">
-					<div class="right-section">
-						&nbsp;<br>
-						&nbsp;<br>
-						Pre-Run:<br>
-						_____________<br>
-						Run:<br>
-						_____________<br>
-						Scrap:<br>
-						_____________<br>
-						QTY Finished:<br>
-						_____________<br>
-					</div>
+				<div id="norpakRightSection"class="right-section">
+					&nbsp;<br>
+					&nbsp;<br>
+					Pre-Run:<br>
+					_____________<br>
+					Run:<br>
+					_____________<br>
+					Scrap:<br>
+					_____________<br>
+					QTY Finished:<br>
+					_____________<br>
 				</div>
 				<div id="norpakLeftSection">
 					<input type="checkbox" name="norpakHide" onclick="hideSection(true, 'norpak')">
 					<span class="section-sub-header">Norpak Process: Name__________________________________________ Date________________</span>
-					<div class="blue-text section-sub-header" id="norpakFinish" style="display:none;">Verify First Article meets all requirements IR____________________________________Date_______________</div>
+					<div class="blue-text section-sub-header" id="norpakFinish" style="display: none;">Verify First Article meets all requirements IR____________________________________ Date_______________</div>
 					<ol class="split">
 						<li>Prepare all parts form Discrete Job², and load into Norpak.</li>
 						<li>Prepare a first article.</li>
@@ -598,24 +575,22 @@
 						<li>Return Signed press proof, and finished good sample stapled to proof, with Job Packet.</li>
 					</ol>
 				</div>
-				<div id="paddyWagonRightSection">
-					<div class="right-section">
-						&nbsp;<br>
-						&nbsp;<br>
-						Pre-Run:<br>
-						_____________<br>
-						Run:<br>
-						_____________<br>
-						Scrap:<br>
-						_____________<br>
-						QTY Finished:<br>
-						_____________<br>
-					</div>
+				<div id="paddyWagonRightSection" class="right-section">
+					&nbsp;<br>
+					&nbsp;<br>
+					Pre-Run:<br>
+					_____________<br>
+					Run:<br>
+					_____________<br>
+					Scrap:<br>
+					_____________<br>
+					QTY Finished:<br>
+					_____________<br>
 				</div>
 				<div id="paddyWagonLeftSection">
 					<input type="checkbox" name="paddyWagonHide" onclick="hideSection(false, 'paddyWagon')">
 					<span class="section-sub-header">Paddy Wagon Process: Name__________________________________________ Date________________</span>
-					<div class="blue-text section-sub-header" id="paddyWagonFinish">Verify First Article meets all requirements IR____________________________________Date_______________</div>
+					<div class="blue-text section-sub-header" id="paddyWagonFinish">Verify First Article meets all requirements IR____________________________________ Date_______________</div>
 					<ol class="split">
 						<li>Perform a line clearance, prepare chip.</li>
 						<li>Chip part #’s must match discrete job; check Lot# of each item against pick list; lot must be clearly assigned on pick list.</li>
@@ -630,14 +605,14 @@
 				<div class="section-header">Packaging: Name_____________________________________________________________________</div>
 				<ol class="split">
 					<li>Place one WHS ID label on each empty storage container before loading. <b>Do Not Label ALL containers in advance.</b></li>
-					<li>Place Initials, and verify Date, and Time on each label as it is placed</li>
+					<li>Place Initials, and verify Date, and Time on each label as it is placed.</li>
 				</ol>
 				<div class="section-sub-header"> Label(s) Verified Against Discrete Job by IR__________________________________________ Date________________</div>
 			</div>
 			<div class="section">
 				<div class="section-header">Reconcile, Review, and complete Job: Name__________________________________________ Date________________</div>
 				<ol class="split">
-					<li>Reconcile all materials; record on Discrete Job; File Proof; Review all paperwork for GMP compliance and confirm all attachments listed on discrete job are present; Complete Job into inventory; Close Job and take to scanning Bin</li>
+					<li>Reconcile all materials; record on Discrete Job; File Proof; Review all paperwork for GMP compliance and confirm all attachments listed on discrete job are present; Complete Job into inventory; Close Job and take to scanning Bin.</li>
 				</ol>
 			</div>
 		</div>
